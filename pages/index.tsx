@@ -7,6 +7,7 @@ import { GetStaticProps } from 'next'
 import SmallCard from '../components/SmallCard'
 import MediumCard from '../components/MediumCard'
 import LargeCard from '../components/LargeCard'
+import Footer from '../components/Footer'
 
 
 interface ExploreDataProps {
@@ -86,6 +87,8 @@ export default function Home({exploreData, cardsData}: PageProps)  {
 
 
       </main>
+
+      <Footer />
 
     </div>
   )
