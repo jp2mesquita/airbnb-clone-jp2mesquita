@@ -5,21 +5,27 @@ import Header from '../components/Header'
 
 import { GetStaticProps } from 'next'
 import SmallCard from '../components/SmallCard'
+import MediumCard from '../components/MediumCard'
+
 
 interface ExploreDataProps {
-  exploreData:{
-    img: string,
-    location: string,
-    distance: string
-  }[]
+  img: string,
+  location: string,
+  distance: string
 }
 
-// interface Props{
-//   props:{
-//     exploreData: ExploreDataProps,
-// }
+interface CardsDataProps {
+  img: string,
+  title: string
+}
 
-export default function Home<NextPage>  ( {exploreData} : ExploreDataProps )  {
+interface PageProps{
+  exploreData: ExploreDataProps[],
+  cardsData: CardsDataProps[]
+}
+
+export default function Home({exploreData, cardsData}: PageProps)  {
+
   return (
     <div className="">
       <Head>
@@ -38,15 +44,39 @@ export default function Home<NextPage>  ( {exploreData} : ExploreDataProps )  {
             Explore Nearby
           </h2>
 
-          {exploreData.map( (item) => (
-            <SmallCard 
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+
+            {exploreData?.map( (item) => (
+              <SmallCard 
               key={item.img}
               distance={item.distance}
               img={item.img}
               location={item.location}
-            />
-          ))}
+              />
+            ))}
+            
+          </div>
         </section>
+
+        <section >
+          <h2 className='text-4xl font-semi-bold py-8'> 
+            Live Anywhere
+          </h2>
+
+          
+          <div className='flex space-x-3 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-300 scrollbar-thumb-rounded-full scrollbar-track-rounded-full p-3 -ml-3'>
+
+            {cardsData?.map( (item) => (
+              <MediumCard
+              key={item.img}
+              img={item.img}
+              title={item.title}
+              />
+            ))}
+          </div>
+        </section>
+
+
       </main>
 
     </div>
@@ -59,10 +89,14 @@ export const getStaticProps: GetStaticProps = async() => {
   const exploreData = await fetch("https://www.jsonkeeper.com/b/4G1G")
     .then(res => res.json())
 
+  const cardsData = await fetch('https://www.jsonkeeper.com/b/VHHT')
+    .then(res => res.json())
+
     
     return {
       props:{
-        exploreData
+        exploreData,
+        cardsData,
       },
       revalidate: 60*60*2 //2 hours
     }
