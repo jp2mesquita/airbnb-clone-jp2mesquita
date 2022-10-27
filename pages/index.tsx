@@ -32,7 +32,22 @@ export default function Home<NextPage>  ( {exploreData} : ExploreDataProps )  {
 
       <Banner />
 
+      <main className='max-w-7xl mx-auto px-8 sm:px-16'>
+        <section className='pt-6'>
+          <h2 className='text-4xl font-semibold pb-5'>
+            Explore Nearby
+          </h2>
 
+          {exploreData.map( (item) => (
+            <SmallCard 
+              key={item.img}
+              distance={item.distance}
+              img={item.img}
+              location={item.location}
+            />
+          ))}
+        </section>
+      </main>
 
     </div>
   )
