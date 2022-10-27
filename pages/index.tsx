@@ -6,6 +6,7 @@ import Header from '../components/Header'
 import { GetStaticProps } from 'next'
 import SmallCard from '../components/SmallCard'
 import MediumCard from '../components/MediumCard'
+import LargeCard from '../components/LargeCard'
 
 
 interface ExploreDataProps {
@@ -64,7 +65,7 @@ export default function Home({exploreData, cardsData}: PageProps)  {
           </h2>
 
           
-          <div className='flex space-x-3 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-300 scrollbar-thumb-rounded-full scrollbar-track-rounded-full p-3 -ml-3'>
+          <div className='flex space-x-3 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full p-3 '>
 
             {cardsData?.map( (item) => (
               <MediumCard
@@ -75,6 +76,13 @@ export default function Home({exploreData, cardsData}: PageProps)  {
             ))}
           </div>
         </section>
+
+        <LargeCard 
+          img='https://links.papareact.com/4cj'
+          title='The Greatest Outdoors'
+          description='Wishlists created by Airbnb'
+          buttonText='Get Inspired'
+        />
 
 
       </main>
