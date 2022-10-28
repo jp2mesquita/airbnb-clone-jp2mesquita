@@ -6,10 +6,19 @@ import {
   SearchIcon,
   UsersIcon
  } from '@heroicons/react/solid'
+import { ChangeEvent, useState } from "react";
 
 
 
 export default function Header(){
+
+  const [searchInput, setSearchInput] = useState('')
+
+  function handleChangeInput(event: ChangeEvent<HTMLInputElement>){
+    setSearchInput(event.target.value)
+    
+  }
+  
   return(
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
       <div className="relative flex items-center h-10 cursor-pointer my-auto">
@@ -28,6 +37,8 @@ export default function Header(){
           type="text"
           placeholder="Start your search" 
           className=" bg-transparent outline-none flex-grow text-sm text-gray-600 placeholder:-gray-400"
+          value={searchInput}
+          onChange={handleChangeInput}
         />
 
         <SearchIcon className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer shrink-0"/>
