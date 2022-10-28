@@ -18,6 +18,7 @@ export default function Header(){
   const [searchInput, setSearchInput] = useState('')
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
+  const [numberOfGuests, setNumberOfGuests] = useState(1)
 
   const selectionRange ={
     startDate: startDate,
@@ -33,6 +34,15 @@ export default function Header(){
   function handleSelect(ranges: RangeKeyDict){
     setStartDate(ranges.selection.startDate)
     setEndDate(ranges.selection.endDate)
+  }
+
+  function handleChangeNumberOfGuests(event: ChangeEvent<HTMLInputElement>){
+    const inputAsNumber = Number(event.target.value)
+    setNumberOfGuests(inputAsNumber)
+  }
+
+  function handleCancelSearch(){
+    setSearchInput('')
   }
 
   return(
@@ -83,6 +93,31 @@ export default function Header(){
             onChange={handleSelect}
           />
 
+
+          <div className="flex items-center border-b mb-4">
+            <h2 className="text-2xl flex-grow font-semibold">
+              Number of Guests
+            </h2>
+
+            <UsersIcon className="h-5"/>
+            <input
+              value={numberOfGuests}
+              onChange={handleChangeNumberOfGuests}
+              type='number'
+              min={1}
+              className="w-12 pl-2 outline-none text-red-400"
+            />
+          </div>
+
+          <div className="flex">
+            <button 
+              className="flex-grow text-gray-500"
+              onClick={handleCancelSearch}
+            >
+              Cancel
+              </button>
+            <button className="flex-grow text-red-400">Search</button>
+          </div>
 
         </div>
       )}
