@@ -3,10 +3,22 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 import { format } from 'date-fns'
+import { GetServerSideProps } from "next";
 
+interface SearchProps{
+  searchResults:{
+    img: string,
+    location: string,
+    description: string,
+    star: number,
+    price: string,
+    total: string,
+    long: number,
+    lat: number
+  }
+}
 
-
-export default function Search(){
+export default function Search({searchResults}: SearchProps){
   const router = useRouter()
   const {
     location, 
@@ -20,6 +32,8 @@ export default function Search(){
 
   const range = `${formattedStartDate} - ${formattedEndDate}`
 
+
+  console.log(searchResults)
   return(
     <div>
       <Header placeholder={`${location} | ${range} | ${numberOfGuests} guests`}/>
@@ -41,10 +55,23 @@ export default function Search(){
             <p className="button">Rooms and Beds</p>
             <p className="button">More filters</p>
           </div>
+
+          
         </section>
       </main>
 
       <Footer />
     </div>
   )
+}
+
+export const getServerSideProps:GetServerSideProps = async() => {
+  const searchResults = await fetch('https://www.jsonkeeper.com/b/5NPS')
+    .then((res) => res.json())
+
+  return{
+    props:{
+      searchResults
+    }
+  }
 }
