@@ -34,8 +34,6 @@ export default function Search({searchResults}: SearchProps){
 
   const range = `${formattedStartDate} - ${formattedEndDate}`
 
-
-  console.log(searchResults)
   return(
     <div>
       <Header placeholder={`${location} | ${range} | ${numberOfGuests} guests`}/>
