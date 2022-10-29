@@ -37,8 +37,8 @@ export default function Header({placeholder}: HeaderProps){
   }
   
   function handleSelect(ranges: RangeKeyDict){
-    setStartDate(ranges.selection.startDate)
-    setEndDate(ranges.selection.endDate)
+    setStartDate(ranges.selection.startDate as Date)
+    setEndDate(ranges.selection.endDate as Date)
   }
 
   function handleChangeNumberOfGuests(event: ChangeEvent<HTMLInputElement>){
