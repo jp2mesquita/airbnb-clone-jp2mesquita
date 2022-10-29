@@ -4,18 +4,20 @@ import Header from "../components/Header";
 
 import { format } from 'date-fns'
 import { GetServerSideProps } from "next";
+import InfoCard from "../components/InfoCard";
 
-interface SearchProps{
+export interface SearchProps{
   searchResults:{
     img: string,
     location: string,
+    title: string,
     description: string,
     star: number,
     price: string,
     total: string,
     long: number,
     lat: number
-  }
+  }[]
 }
 
 export default function Search({searchResults}: SearchProps){
@@ -56,10 +58,29 @@ export default function Search({searchResults}: SearchProps){
             <p className="button">More filters</p>
           </div>
 
-          
+          <div className="flex flex-col">
+          {searchResults.map( (item) => (
+            <InfoCard
+              key={item.img}
+              img={item.img}
+              location={item.location}
+              title={item.title}
+              description={item.description}
+              star={item.star}
+              price={item.price}
+              total={item.total}
+              long={item.long}
+              lat={item.lat}
+            />
+          ))}
+        </div>
         </section>
+
+
+
       </main>
 
+   
       <Footer />
     </div>
   )
