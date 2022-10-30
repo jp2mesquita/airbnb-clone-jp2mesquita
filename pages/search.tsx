@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import { format } from 'date-fns'
 import { GetServerSideProps } from "next";
 import InfoCard from "../components/InfoCard";
+import Map from "../components/Map";
 
 export interface SearchProps{
   searchResults:{
@@ -38,7 +39,7 @@ export default function Search({searchResults}: SearchProps){
     <div>
       <Header placeholder={`${location} | ${range} | ${numberOfGuests} guests`}/>
 
-      <main className="flex">
+      <main className="flex ">
       <section className="felx-grow pt-14 px-6">
           <p className="text-xs">
             300+ Stays - {range} - {numberOfGuests} guests
@@ -74,7 +75,11 @@ export default function Search({searchResults}: SearchProps){
         </div>
         </section>
 
-
+        <section className="hidden xl:inline-flex  sticky top-[76px] h-[calc(100vh-76px)] xl:cursor-grab active:cursor-grabbing xl:w-[50%]  xl:justify-end">
+          <Map 
+            searchResults={searchResults }
+          />
+        </section>
 
       </main>
 
