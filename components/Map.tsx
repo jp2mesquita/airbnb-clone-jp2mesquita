@@ -77,18 +77,6 @@ export default function Map({searchResults} : SearchProps){
             )
           }
 
-          {/* {showPopup && 
-           ( 
-            <Popup
-              onClose={() => setShowPopup(false)}
-              latitude={result.lat}
-              longitude={result.long}
-              anchor='top-left'
-            >
-              {result.title}
-            </Popup>
-            )
-        } */}
         </div>
       )
       }

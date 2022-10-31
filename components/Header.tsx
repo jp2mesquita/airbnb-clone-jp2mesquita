@@ -9,7 +9,7 @@ import {
 import { ChangeEvent, useState } from "react";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { DateRangePicker, RangeKeyDict, Range } from 'react-date-range'
+import { DateRangePicker, RangeKeyDict} from 'react-date-range'
 import { useRouter } from "next/router";
 
 interface HeaderProps{
